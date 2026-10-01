@@ -1,0 +1,287 @@
+{
+  "revision": {
+    "commit": "65dc12035de155dfad2e44ce5f23a8a68f94e216",
+    "dirty": false
+  },
+  "leakChecksPassed": 47,
+  "calibrationSeed": 42,
+  "testSeeds": [
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "blocks": {
+    "first": {
+      "from": "2024-09-01T00:00:00.000Z",
+      "to": "2024-09-15T22:00:00.000Z"
+    },
+    "second": {
+      "from": "2024-09-15T22:00:00.000Z",
+      "to": "2024-10-01T00:00:00.000Z"
+    }
+  },
+  "blockStats": {
+    "first": {
+      "rows": 79565,
+      "series": 609,
+      "injectableSeries": 26,
+      "chargedRows": 3248,
+      "rowsAtLeast1": 2486,
+      "totalSpend": 64724.57
+    },
+    "second": {
+      "rows": 79861,
+      "series": 584,
+      "injectableSeries": 27,
+      "chargedRows": 2251,
+      "rowsAtLeast1": 2045,
+      "totalSpend": 29020.87
+    }
+  },
+  "buildConfig": {
+    "focusFilePath": "data/focus-sample/focus_full_hourly.csv",
+    "alibabaFilePath": "data/alibaba/openb_pod_list_default.csv",
+    "numScenarios": 60,
+    "timeWindowHours": 4,
+    "minBaselineCost": 1,
+    "costMultiplierMin": 3,
+    "costMultiplierMax": 6,
+    "distractorsPerScenario": 3,
+    "driftFraction": 0.3,
+    "driftWindowHours": 12,
+    "minIncidentGapHours": 12
+  },
+  "frozen": {
+    "ratioRule": {
+      "minRelativeIncrease": 2,
+      "minAbsoluteDelta": 8
+    },
+    "ifAndRule": {
+      "minRelativeIncrease": 2.5,
+      "minAbsoluteDelta": 0.1,
+      "thresholdPercentile": 99,
+      "contamination": 0.01
+    },
+    "ifAndRuleCharged": {
+      "minRelativeIncrease": 2,
+      "minAbsoluteDelta": 0.1,
+      "thresholdPercentile": 95
+    },
+    "medianRatioRule": {
+      "minRelativeIncrease": 1.5,
+      "minAbsoluteDelta": 4
+    },
+    "dollarRule": {
+      "minAbsoluteDelta": 6
+    },
+    "seasonalRule": {
+      "minRelativeIncrease": 1.2,
+      "minAbsoluteDelta": 2
+    }
+  },
+  "frozenSwapped": {
+    "ratioRule": {
+      "minRelativeIncrease": 2.5,
+      "minAbsoluteDelta": 8
+    },
+    "ifAndRule": {
+      "minRelativeIncrease": 3,
+      "minAbsoluteDelta": 0.1,
+      "thresholdPercentile": 99.5,
+      "contamination": 0.01
+    },
+    "ifAndRuleCharged": {
+      "minRelativeIncrease": 3,
+      "minAbsoluteDelta": 0.1,
+      "thresholdPercentile": 95
+    },
+    "medianRatioRule": {
+      "minRelativeIncrease": 3,
+      "minAbsoluteDelta": 0.1
+    },
+    "dollarRule": {
+      "minAbsoluteDelta": 8
+    },
+    "seasonalRule": {
+      "minRelativeIncrease": 1.5,
+      "minAbsoluteDelta": 4
+    }
+  },
+  "gridBoundary": {
+    "ifAndRule": {
+      "thresholdPercentile": {
+        "chosen": 99,
+        "min": 95,
+        "max": 99.9,
+        "onEdge": false
+      },
+      "minRelativeIncrease": {
+        "chosen": 2.5,
+        "min": 1.2,
+        "max": 5,
+        "onEdge": false
+      },
+      "minAbsoluteDelta": {
+        "chosen": 0.1,
+        "min": 0.1,
+        "max": 16,
+        "onEdge": true
+      }
+    },
+    "ratioRule": {
+      "minRelativeIncrease": {
+        "chosen": 2,
+        "min": 1.2,
+        "max": 5,
+        "onEdge": false
+      },
+      "minAbsoluteDelta": {
+        "chosen": 8,
+        "min": 0.1,
+        "max": 16,
+        "onEdge": false
+      }
+    },
+    "seasonalRule": {
+      "minRelativeIncrease": {
+        "chosen": 1.2,
+        "min": 1.2,
+        "max": 5,
+        "onEdge": true
+      },
+      "minAbsoluteDelta": {
+        "chosen": 2,
+        "min": 0.1,
+        "max": 16,
+        "onEdge": false
+      }
+    },
+    "medianRatioRule": {
+      "minRelativeIncrease": {
+        "chosen": 1.5,
+        "min": 1.2,
+        "max": 5,
+        "onEdge": false
+      },
+      "minAbsoluteDelta": {
+        "chosen": 4,
+        "min": 0.1,
+        "max": 16,
+        "onEdge": false
+      }
+    },
+    "dollarRule": {
+      "minRelativeIncrease": {
+        "chosen": 1,
+        "min": 1,
+        "max": 1,
+        "onEdge": true
+      },
+      "minAbsoluteDelta": {
+        "chosen": 6,
+        "min": 0.1,
+        "max": 32,
+        "onEdge": false
+      }
+    }
+  },
+  "gridBoundarySwapped": {
+    "ifAndRule": {
+      "thresholdPercentile": {
+        "chosen": 99.5,
+        "min": 95,
+        "max": 99.9,
+        "onEdge": false
+      },
+      "minRelativeIncrease": {
+        "chosen": 3,
+        "min": 1.2,
+        "max": 5,
+        "onEdge": false
+      },
+      "minAbsoluteDelta": {
+        "chosen": 0.1,
+        "min": 0.1,
+        "max": 16,
+        "onEdge": true
+      }
+    },
+    "ratioRule": {
+      "minRelativeIncrease": {
+        "chosen": 2.5,
+        "min": 1.2,
+        "max": 5,
+        "onEdge": false
+      },
+      "minAbsoluteDelta": {
+        "chosen": 8,
+        "min": 0.1,
+        "max": 16,
+        "onEdge": false
+      }
+    },
+    "seasonalRule": {
+      "minRelativeIncrease": {
+        "chosen": 1.5,
+        "min": 1.2,
+        "max": 5,
+        "onEdge": false
+      },
+      "minAbsoluteDelta": {
+        "chosen": 4,
+        "min": 0.1,
+        "max": 16,
+        "onEdge": false
+      }
+    },
+    "medianRatioRule": {
+      "minRelativeIncrease": {
+        "chosen": 3,
+        "min": 1.2,
+        "max": 5,
+        "onEdge": false
+      },
+      "minAbsoluteDelta": {
+        "chosen": 0.1,
+        "min": 0.1,
+        "max": 16,
+        "onEdge": true
+      }
+    },
+    "dollarRule": {
+      "minRelativeIncrease": {
+        "chosen": 1,
+        "min": 1,
+        "max": 1,
+        "onEdge": true
+      },
+      "minAbsoluteDelta": {
+        "chosen": 8,
+        "min": 0.1,
+        "max": 32,
+        "onEdge": false
+      }
+    }
+  },
+  "aPriori": {
+    "ratioRule": {
+      "detector": "ratio_rule",
+      "minRelativeIncrease": 2.5,
+      "minAbsoluteDelta": 1
+    },
+    "robustZ": {
+      "detector": "robust_z",
+      "robustZThreshold": 3.5,
+      "minAbsoluteDelta": 1
+    },
+    "ifAndRuleDefault": {
+      "detector": "isolation_forest",
+      "thresholdPercentile": 99,
+      "minRelativeIncrease": 2.5,
+      "minAbsoluteDelta": 1
+    }
+  },
+  "statistics": "mean ± sample SD over held-out seeds, with 95% t-interval [low, high]; seeds vary incident placement, shapes, event noise, and the Isolation Forest random state, but share the test block's normal rows (the swapped direction varies those)"
+}
