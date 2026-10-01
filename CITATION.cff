@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+title: "Automated Cloud Cost Anomaly Detection and Root-Cause Attribution"
+message: "If you use this software, please cite it using the metadata from this file."
+type: software
+
+authors:
+  - family-names: "Akel"
+    given-names: "Sedat"
+    orcid: "https://orcid.org/0000-0002-2615-816X"
+  - family-names: "Doğan"
+    given-names: "Hacer"
+    orcid: "https://orcid.org/0000-0003-0896-2645"
+  - family-names: "Eyerci"
+    given-names: "Tarkan"
+    orcid: "https://orcid.org/0000-0003-1997-2849"
+
+repository-code: "https://github.com/teyerci/cloud-cost-anomaly-bench"
+url: "https://github.com/teyerci/cloud-cost-anomaly-bench"
+
+abstract: "Seeded benchmark and evaluation protocol for cloud cost anomaly detection and candidate-event attribution on FOCUS billing data, with events derived from the Alibaba GPU cluster trace: benchmark builder, two-direction time-block calibration protocol with matched controls, rule-based and Isolation Forest detectors, attribution baselines, results, and a prototype dashboard."
+
+keywords:
+  - FinOps
+  - cloud cost
+  - anomaly detection
+  - root-cause analysis
+  - FOCUS
+  - benchmark
+
+license: MIT
+version: "1.0.1"
+date-released: "2026-10-01"
