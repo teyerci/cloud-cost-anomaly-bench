@@ -1,0 +1,176 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model BillingRecord {
+  id                String             @id @default(cuid())
+  timestamp         DateTime
+  account           String
+  service           String
+  region            String
+  resourceId        String?
+  cost              Float
+  usageQuantity     Float
+  tags              Json?
+  sourceType        String             @default("synthetic")
+  provider          String             @default("unknown")
+  currency          String             @default("USD")
+  rawSource         Json?
+  isInjectedAnomaly Boolean            @default(false)
+  anomalyType       String?
+  expectedRootCause String?
+  createdAt         DateTime           @default(now())
+  anomalies         AnomalyResult[]
+  groundTruthLabels GroundTruthLabel[]
+
+  @@index([timestamp])
+  @@index([service, region, account])
+  @@index([sourceType])
+}
+
+model InfrastructureEvent {
+  id                  String               @id @default(cuid())
+  timestamp           DateTime
+  eventType           String
+  account             String
+  service             String
+  region              String
+  resourceId          String?
+  description         String
+  metadata            Json?
+  sourceType          String               @default("synthetic")
+  createdAt           DateTime             @default(now())
+  rootCauseCandidates RootCauseCandidate[]
+  groundTruthLabels   GroundTruthLabel[]
+
+  @@index([timestamp])
+  @@index([eventType])
+  @@index([service, region, account])
+  @@index([sourceType])
+}
+
+model AnomalyResult {
+  id                  String               @id @default(cuid())
+  timestamp           DateTime
+  billingRecordId     String?
+  billingRecord       BillingRecord?       @relation(fields: [billingRecordId], references: [id], onDelete: SetNull)
+  score               Float
+  severity            String
+  expectedCost        Float
+  actualCost          Float
+  explanation         String
+  sourceType          String               @default("synthetic")
+  createdAt           DateTime             @default(now())
+  rootCauseCandidates RootCauseCandidate[]
+
+  @@index([timestamp])
+  @@index([severity])
+  @@index([sourceType])
+}
+
+model RootCauseCandidate {
+  id                    String              @id @default(cuid())
+  anomalyResultId       String
+  anomalyResult         AnomalyResult       @relation(fields: [anomalyResultId], references: [id], onDelete: Cascade)
+  infrastructureEventId String
+  infrastructureEvent   InfrastructureEvent @relation(fields: [infrastructureEventId], references: [id], onDelete: Cascade)
+  score                 Float
+  reason                String
+  signals               Json?
+  createdAt             DateTime            @default(now())
+
+  @@index([anomalyResultId])
+  @@index([score])
+}
+
+model GroundTruthLabel {
+  id                    String               @id @default(cuid())
+  billingRecordId       String?
+  billingRecord         BillingRecord?       @relation(fields: [billingRecordId], references: [id], onDelete: Cascade)
+  anomalyWindowStart    DateTime
+  anomalyWindowEnd      DateTime
+  expectedRootCauseType String
+  expectedEventId       String?
+  expectedEvent         InfrastructureEvent? @relation(fields: [expectedEventId], references: [id], onDelete: SetNull)
+  expectedEventType     String
+  sourceDataset         String               @default("hybrid_synthesized")
+  explanation           String
+  metadata              Json?
+  createdAt             DateTime             @default(now())
+
+  @@index([billingRecordId])
+  @@index([expectedEventId])
+  @@index([sourceDataset])
+  @@index([anomalyWindowStart, anomalyWindowEnd])
+}
+
+model DetectionRun {
+  id                  String   @id @default(cuid())
+  buildRunId          String?
+  sourceType          String
+  detector            String   @default("isolation_forest")
+  robustZThreshold    Float?
+  postFilter          Boolean  @default(true)
+  alertBudget         Int?
+  evalWindowFrom      DateTime?
+  evalWindowTo        DateTime?
+  contamination       Float
+  nEstimators         Int
+  maxSamples          String
+  randomState         Int
+  calibrationUsed     Boolean  @default(false)
+  selectedThreshold   Float?
+  thresholdPercentile Float?
+  minRelativeIncrease Float    @default(2)
+  minAbsoluteDelta    Float    @default(0.5)
+  scoreDistribution   Json?
+  tuningResults       Json?
+  bestF1Config        Json?
+  bestPrecisionConfig Json?
+  labeledAnomalies    Int      @default(0)
+  detectedAnomalies   Int      @default(0)
+  createdAt           DateTime @default(now())
+
+  @@index([sourceType, createdAt])
+  @@index([buildRunId])
+}
+
+model DatasetBuildRun {
+  id                       String   @id @default(cuid())
+  sourceType               String
+  focusFilePath            String?
+  alibabaFilePath          String?
+  seed                     Int      @default(42)
+  numScenarios             Int      @default(50)
+  timeWindowHours          Float?
+  minTimeWindowHours       Float?
+  maxTimeWindowHours       Float?
+  minBaselineCost          Float    @default(1)
+  costMultiplierMin        Float?
+  costMultiplierMax        Float?
+  runDetection             Boolean  @default(false)
+  runAttributionForTruePositives Boolean @default(false)
+  attributionSetting       String   @default("oracle")
+  distractorsPerScenario   Int      @default(0)
+  eventTimeJitterHours     Float    @default(0)
+  dimensionNoiseRate       Float    @default(0)
+  distractorEventCount     Int      @default(0)
+  injectionFrom            DateTime?
+  injectionTo              DateTime?
+  driftFraction            Float    @default(0)
+  driftWindowHours         Float?
+  importedFocusRecords     Int      @default(0)
+  importedAlibabaEvents    Int      @default(0)
+  injectedScenarioCount    Int      @default(0)
+  injectedRecordCount      Int      @default(0)
+  hybridBillingRecordCount Int      @default(0)
+  expectedRootCauseEventIds Json?
+  createdAt                DateTime @default(now())
+
+  @@index([sourceType, createdAt])
+}

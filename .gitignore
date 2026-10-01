@@ -1,0 +1,25 @@
+node_modules/
+dist/
+.env
+.DS_Store
+__pycache__/
+*.pyc
+.venv
+data/focus-sample/*
+!data/focus-sample/README.md
+!data/focus-sample/focus_sample.csv
+!data/focus-sample/inputs.manifest.json
+!data/focus-sample/focus_sample_10000.csv.zip
+!data/focus-sample/focus_sample_100000.csv.gz
+~$*
+
+# Experiment checkpoints (resume state of an unfinished run)
+results/checkpoint/
+
+# Downloaded third-party trace (no redistribution license)
+data/alibaba/*.csv
+
+# Paper and its generator (under submission; kept in the private development repository)
+docs/paper.docx
+docs/tools/paper_template.docx
+docs/tools/build_paper.py

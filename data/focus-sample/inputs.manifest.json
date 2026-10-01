@@ -1,0 +1,29 @@
+{
+  "note": "Inputs of the reported experiments. Raw counts from profiling the full FOCUS sample file; analysed counts from data/focus-sample/focus_full_hourly.csv (built by data/tools/aggregate_focus_hourly.py --month 2024-09).",
+  "focus_raw": {
+    "file": "focus_data_table.csv.gz (FOCUS-Sample-Data repository, downloaded 2026-09-28; not committed, 496 MB)",
+    "sha256": "c198cda74cbde4b11b9be289815bda7e9ac62042f1d023ad9bc8fbf7bff1018c",
+    "line_items": 5488359,
+    "line_items_september_2024": 5488244,
+    "line_items_dropped_other_months": 115,
+    "dropped_rows_provider": "Google Cloud (all 115 rows are dated March 2024)",
+    "billing_accounts": 4,
+    "services": 117,
+    "regions": 73
+  },
+  "focus_hourly": {
+    "file": "data/focus-sample/focus_full_hourly.csv",
+    "sha256": "0cb9f4b61e7273fd7bb8c8403c207e9d2af0f3d5a0e3c248bb88940b6ac4d5fb",
+    "rows": 159426,
+    "line_items": 5488244,
+    "billing_accounts": 3,
+    "providers": ["AWS", "Microsoft", "Oracle"],
+    "services": 113,
+    "regions": 64
+  },
+  "alibaba": {
+    "file": "data/alibaba/openb_pod_list_default.csv (cluster-trace-gpu-v2023)",
+    "sha256": "1ee7ed79c27a3b0861cda8ddba86a004c6aba904caafa329a76ae93ca63834a8"
+  },
+  "environment": {"node": "26.5.0", "python": "3.14.6", "scikit-learn": "1.5.2", "numpy": "2.4.6", "typescript": "^5.6.3", "prisma": "^5.22.0", "postgres": "16 (docker-compose)", "recharts": "^2.13.3"}
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "id": "record-1",
+    "timestamp": "2026-05-01T00:00:00Z",
+    "cost": 42.5,
+    "usageQuantity": 100,
+    "serviceIndex": 1,
+    "regionIndex": 1,
+    "accountIndex": 3,
+    "projectIndex": 12,
+    "hourOfDay": 0,
+    "dayOfWeek": 5,
+    "previousCost": 42.5,
+    "costDelta": 0,
+    "rollingMean": 42.5,
+    "rollingStd": 0,
+    "rollingZScore": 0
+  },
+  {
+    "id": "record-2",
+    "timestamp": "2026-05-01T01:00:00Z",
+    "cost": 44.1,
+    "usageQuantity": 103,
+    "serviceIndex": 1,
+    "regionIndex": 1,
+    "accountIndex": 3,
+    "projectIndex": 12,
+    "hourOfDay": 1,
+    "dayOfWeek": 5,
+    "previousCost": 42.5,
+    "costDelta": 1.6,
+    "rollingMean": 42.5,
+    "rollingStd": 0,
+    "rollingZScore": 0
+  },
+  {
+    "id": "record-3",
+    "timestamp": "2026-05-01T02:00:00Z",
+    "cost": 185.2,
+    "usageQuantity": 420,
+    "serviceIndex": 1,
+    "regionIndex": 1,
+    "accountIndex": 3,
+    "projectIndex": 12,
+    "hourOfDay": 2,
+    "dayOfWeek": 5,
+    "previousCost": 44.1,
+    "costDelta": 141.1,
+    "rollingMean": 43.3,
+    "rollingStd": 0.8,
+    "rollingZScore": 177.38
+  }
+]

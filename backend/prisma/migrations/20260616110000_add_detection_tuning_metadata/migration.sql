@@ -1,0 +1,6 @@
+ALTER TABLE "DetectionRun"
+ADD COLUMN "minRelativeIncrease" DOUBLE PRECISION NOT NULL DEFAULT 2,
+ADD COLUMN "minAbsoluteDelta" DOUBLE PRECISION NOT NULL DEFAULT 0.5,
+ADD COLUMN "tuningResults" JSONB,
+ADD COLUMN "bestF1Config" JSONB,
+ADD COLUMN "bestPrecisionConfig" JSONB;
