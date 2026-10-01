@@ -1,5 +1,7 @@
 # cloud-cost-anomaly-bench
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23088203.svg)](https://doi.org/10.5281/zenodo.23088203)
+
 Prototype monorepo for Automated Cloud Cost Anomaly Detection and Root-Cause Attribution.
 
 ## Paper

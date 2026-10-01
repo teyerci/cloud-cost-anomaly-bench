@@ -16,6 +16,7 @@ authors:
 
 repository-code: "https://github.com/teyerci/cloud-cost-anomaly-bench"
 url: "https://github.com/teyerci/cloud-cost-anomaly-bench"
+doi: "10.5281/zenodo.23088203"
 
 abstract: "Seeded benchmark and evaluation protocol for cloud cost anomaly detection and candidate-event attribution on FOCUS billing data, with events derived from the Alibaba GPU cluster trace: benchmark builder, two-direction time-block calibration protocol with matched controls, rule-based and Isolation Forest detectors, attribution baselines, results, and a prototype dashboard."
 
